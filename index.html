@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Homenagem para Mamãe</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(to bottom, #fffaf0, #ffe4c4);
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #d49600;
+        }
+
+        .question {
+            display: none;
+            margin: 30px auto;
+            background: #fffbea;
+            padding: 20px;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type="text"] {
+            padding: 8px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            margin-top: 10px;
+            width: 90%;
+        }
+
+        button {
+            margin-top: 10px;
+            background-color: #d49600;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .message {
+            margin-top: 20px;
+            font-style: italic;
+            color: #444;
+        }
+
+        .photo {
+            margin-top: 15px;
+            max-width: 80%;
+            border-radius: 12px;
+        }
+
+        #final-message {
+            display: none;
+            margin-top: 40px;
+            padding: 20px;
+            background: #fff4d9;
+            border-radius: 16px;
+        }
+
+        .typing {
+            font-size: 18px;
+            margin-top: 20px;
+            min-height: 50px;
+            white-space: pre-line;
+        }
+    </style>
+</head>
+
+<body>
+    <audio id="audioInicial">
+    <source src="mae.mp3" type="audio/mpeg">
+    Seu navegador não suporta áudio.
+</audio>
+
+
+<button onclick="playAudio()">Clique para ouvir a homenagem</button>
+    <h1>Feliz Dia das Mães, Maria do Socorro! 💖</h1>
+
+    <div id="typing" class="typing"></div>
+
+    <div id="quiz"></div>
+
+    <div id="final-message">
+        <h2>Você chegou até aqui... 💌</h2>
+        <p>
+            Mamãe Maria do Socorro, <br>
+            Se você está lendo isso, é porque cada resposta foi respondida com amor. Isso mostra o quanto a senhora é
+            importante para nós e como suas lutas, suas histórias e sua vida estão gravadas em nossos corações.
+        </p>
+        <p>
+            Esta homenagem é apenas um reflexo do quanto te admiramos. Seu esforço, sua garra, sua doçura… tudo em você
+            é exemplo. A senhora nunca esteve sozinha. Cada passo seu também foi o nosso. Cada lágrima sua foi sentida
+            por nós. Cada vitória sua é celebrada por todos nós.
+        </p>
+        <p>
+            Te amamos eternamente. Obrigado por existir, por lutar e por nos amar incondicionalmente.
+        </p>
+        <p>
+            <strong>Feliz Dia das Mães!</strong>
+        </p>
+        <p>
+            <em>Com todo amor do mundo, seus filhos.</em>
+        </p>
+        <audio controls autoplay>
+            <source src="mae.mp3" type="audio/mpeg">
+            Seu navegador não suporta áudio.
+        </audio>
+    </div>
+    
+    <script>
+        const frases = [
+            "Essa é uma homenagem feita com amor...",
+            "Cada resposta certa revela uma lembrança linda...",
+            "Porque você merece todo carinho do mundo, mamãe."
+        ];
+
+        const typingDiv = document.getElementById('typing');
+        let fraseIndex = 0;
+        let charIndex = 0;
+
+        function digitarFrase() {
+            if (fraseIndex < frases.length) {
+                if (charIndex < frases[fraseIndex].length) {
+                    typingDiv.innerHTML += frases[fraseIndex].charAt(charIndex);
+                    charIndex++;
+                    setTimeout(digitarFrase, 50);
+                } else {
+                    typingDiv.innerHTML += "\n";
+                    fraseIndex++;
+                    charIndex = 0;
+                    setTimeout(digitarFrase, 1000);
+                }
+            } else {
+                mostrarPergunta();
+            }
+        }
+
+        digitarFrase();
+
+        const perguntas = [
+            {
+                texto: "Qual é o nome completo da nossa mãe?",
+                resposta: "Maria do Socorro Pito Almeida",
+                imagem: "foto1.jpeg", 
+                mensagem: "Deixando para trás as dificuldades do interior, ela enfrentou a cidade grande com coragem, buscando incessantemente a melhor educação e proteção para seus filhos. Sua força e determinação são a verdadeira definição de amor incondicional, e sua luta será sempre nossa maior inspiração."
+            },
+            {
+                texto: "Em que dia nossa mãe nasceu?",
+                resposta: "03/07/1984",
+                imagem: "foto2.jpeg",
+                mensagem: "Nascida no interior de Barro Branco, no Maranhão, ela construiu sua história com coragem, força e determinação. Deixou a terra natal em busca de uma vida melhor para seus filhos, enfrentando desafios com um sorriso no rosto e nunca desistindo de garantir a educação e o futuro deles. Sua força é o reflexo do amor incondicional que ela sempre teve para com sua família."
+
+            },
+            {
+                texto: "Quantos filhos Maria do Socorro tem?",
+                resposta: "3",
+                imagem: ["foto10.jpeg", "foto11.jpeg"],
+                mensagem: "Ela batalha incansavelmente, faz o impossível acontecer e, mesmo quando não tem condições, se desdobra para ser mãe e pai ao mesmo tempo, garantindo que nós nunca faltássemos o essencial: amor, proteção e coragem."
+
+            },
+            {
+                texto: "Qual é o trabalho que nossa mãe faz com tanto esforço e amor?",
+                resposta: "babá",
+                imagem: "foto12.jpeg",
+                mensagem: "Com o trabalho de babá e faxina, ela moveu montanhas por nós. A senhora faz o impossível acontecer, muitas vezes colocando seu próprio bem-estar em segundo plano, enfrentando até doenças, para garantir que seus filhos tenham sempre o melhor, mesmo quando precisa abrir mão de suas próprias necessidades."
+            },
+            {
+                texto: "Qual filho a senhora esta formar no ensino superior?",
+                resposta: "José Tayllan Pinto Almeida",
+                imagem: "foto9.jpeg",
+                mensagem: `As notas e as premiações na faculdade nunca foram por mim, 
+        eu não sou muito de falar ou de demonstrar, 
+        mas a forma que eu encontrei foi conseguindo premiações... 
+        seja pela escola, faculdade, futebol...
+        Tudo o que fosse capaz de tirar um sorriso do rosto da senhora 
+        se tornou meu objetivo. 
+        Te amo, mãe.`
+            },
+            {
+                texto: "Data de nascimento do filho mais velho?",
+                resposta: "19/04/2005",
+                imagem: ["foto6.jpeg", "foto5.jpeg"],
+                mensagem: `Com essa data nasceu um pedaço do seu coração!
+        <h2>Ô mãe...</h2>
+        Eu te amo.
+        Eu te amo porque você me amou antes mesmo de me conhecer.
+        A tua vida gerou vida em mim.
+        Me perdoa pelas vezes que não te ouvi...
+        Pelas vezes que te decepcionei...
+        Pelas noites em claro que te fiz passar.
+        Mas eu sei que nessas noites, você orou por mim.
+        Eu agradeço a Deus por ter me presenteado com você como mãe.
+        Eu sou o que sou, graças a ti.
+        Feliz Dia das Mães.
+        Hoje ja tenho 20 anos, me partevo coração saber que ainda não trabalho e não posso ajudar a senhora,
+        nos tratamentos medicos e na parte financeira, tudo tem um propossito, e eu sei que Deus tem um plano para mim.
+        Eu sou grato por tudo que a senhora fez e faz por mim.
+        <h2>Eu te amo, mãe! </h2>`
+            },
+            {
+                texto: "Data de nascimento da filha do meio?",
+                resposta: "10/12/2008",
+                imagem: ["foto7.jpeg", "foto14.jpeg"],
+                mensagem: "Mãe, mesmo quando as palavras não são ditas, meu amor por você está sempre aqui, no meu coração. Ultrapassa qualquer coisa neste mundo... Você é a Luz da minha vida! O meu porto seguro, a razão do meu sorriso, mesmo que eu não saiba expressar da forma certa. Saiba que o meu coração transborda de amor por você! Minha mãe querida, te amo além das palavras. FELIZ DIA DAS MÃES !!"
+            },
+            {
+                texto: "Data de nascimento da filha mais nova?",
+                resposta: "04/05/2011",
+                imagem: ["foto8.jpeg", "foto13.jpeg"],
+                mensagem: `
+        Eu te amo, mãe!
+        Mãe, eu sei que a vida não pegou leve com você.
+        As marcas do tempo e os desafios enfrentados moldaram sua jornada de uma maneira única.
+        Mesmo diante das adversidades, você sempre se manteve firme, lutando com bravura.
+        Suas batalhas são testemunhas de sua força e resiliência.
+        Deixo aqui a expressão da minha admiração e gratidão por tudo o que você é e representa para mim e meus irmãos.
+        Que essa homenagem seja um lembrete do quanto você é amada e admirada!
+        Obrigado por sempre dar o melhor para nós, mesmo quando o mundo tentou te derrubar.
+        Você é minha heroína, meu amor e minha inspiração.
+        Eu te amo, minha coroa!`
+            }
+        ];
+
+        const quiz = document.getElementById('quiz');
+        let current = 0;
+
+        function mostrarPergunta() {
+            if (current >= perguntas.length) {
+                document.getElementById('final-message').style.display = 'block';
+                return;
+            }
+
+            const p = perguntas[current];
+            const div = document.createElement('div');
+            div.className = 'question';
+            div.style.display = 'block';
+            div.innerHTML = `
+        <h3>${p.texto}</h3>
+        <input type="text" id="resposta-${current}" placeholder="Sua resposta" />
+        <br>
+        <button onclick="verificarResposta(${current})">Responder</button>
+        <div id="mensagem-${current}" class="message"></div>
+      `;
+            quiz.appendChild(div);
+        }
+function playAudio() {
+    const audio = document.getElementById('audioInicial');
+    audio.play().catch(error => {
+        console.warn("Autoplay bloqueado. Clique para reproduzir o áudio.", error);
+    });
+}
+
+  function verificarResposta(i) {
+  const userInput = document.getElementById(`resposta-${i}`).value.trim().toLowerCase();
+  const respostaCorreta = perguntas[i].resposta.toLowerCase();
+
+  if (userInput === respostaCorreta) {
+    let mensagemHTML = `<p>${perguntas[i].mensagem}</p>`;
+
+    const imagem = perguntas[i].imagem;
+
+    // Trata se imagem for array ou string
+    if (Array.isArray(imagem)) {
+      imagem.forEach(img => {
+        mensagemHTML += `<img src="${img}" class="photo" alt="Foto com homenagem" />`;
+      });
+    } else if (typeof imagem === "string") {
+      mensagemHTML += `<img src="${imagem}" class="photo" alt="Foto com homenagem" />`;
+    }
+
+    document.getElementById(`mensagem-${i}`).innerHTML = mensagemHTML;
+    current++;
+
+    // Verifica se foi a última pergunta
+    if (current >= perguntas.length) {
+      setTimeout(() => {
+        document.getElementById('final-message').style.display = 'block';
+
+        // Reproduz o áudio final
+        const audio = document.querySelector('#final-message audio');
+        if (audio) {
+          audio.play().catch(error => {
+            console.warn("Autoplay bloqueado. Interação do usuário necessária para reproduzir áudio.", error);
+          });
+        }
+      }, 1000);
+    } else {
+      setTimeout(mostrarPergunta, 1000);
+    }
+  } else {
+    alert("Resposta incorreta. Tente novamente com carinho.");
+  }
+}
+
+    </script>
+</body>
+
+</html>
